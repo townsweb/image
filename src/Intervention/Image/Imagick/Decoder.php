@@ -66,7 +66,7 @@ class Decoder extends AbstractDecoder
     {
         $object = $this->removeAnimation($object);
         $object = $this->setOrientation($object);
-        $object = $this->setProfile($object);
+//        $object = $this->setProfile($object);
         $object->stripImage();
 
         $image = new Image(new Driver, $object);
