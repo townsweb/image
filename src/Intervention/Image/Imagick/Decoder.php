@@ -23,6 +23,7 @@ class Decoder extends AbstractDecoder
 
         try {
 
+            $core->setBackgroundColor(new \ImagickPixel('transparent'));
             $core->readImage($path);
             $core->setImageType(Imagick::IMGTYPE_TRUECOLORMATTE);
         } catch (\ImagickException $e) {

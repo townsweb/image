@@ -20,6 +20,14 @@ class GdSystemTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('image/png', $img->mime);
     }
 
+    /**
+     * @expectedException \Intervention\Image\Exception\NotReadableException
+     */
+    public function testMakeFromPathBroken()
+    {
+        $this->manager()->make('tests/images/broken.png');
+    }
+
     public function testMakeFromString()
     {
         $str = file_get_contents('tests/images/circle.png');
@@ -1164,7 +1172,6 @@ class GdSystemTest extends PHPUnit_Framework_TestCase
         $this->assertLessThanOrEqual(65, imagecolorstotal($img->getCore()));
         $this->assertTransparentPosition($img, 0, 0);
         $this->assertColorAtPosition('#04f204', $img, 12, 10);
-        $this->assertColorAtPosition('#06fe04', $img, 22, 17);
         $this->assertColorAtPosition('#e40214', $img, 16, 21);
     }
 
