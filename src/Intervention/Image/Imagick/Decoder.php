@@ -64,9 +64,9 @@ class Decoder extends AbstractDecoder
      */
     public function initFromImagick(Imagick $object)
     {
+        $object = $this->setProfile($object);
         $object = $this->removeAnimation($object);
         $object = $this->setOrientation($object);
-//        $object = $this->setProfile($object);
         $object->stripImage();
 
         $image = new Image(new Driver, $object);
@@ -180,8 +180,8 @@ class Decoder extends AbstractDecoder
     public function setProfile(Imagick $object)
     {
         $object->profileImage("icc", $this->getSrgbColorProfile());
-        $object->removeImageProfile("icc");
-
+//        $object->removeImageProfile("icc");
+        $object->transformImageColorspace(Imagick::COLORSPACE_SRGB);
         return $object;
     }
 
