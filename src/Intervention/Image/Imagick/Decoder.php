@@ -87,6 +87,7 @@ class Decoder extends AbstractDecoder
         $core = new Imagick;
 
         try {
+            $core->setBackgroundColor(new \ImagickPixel('transparent'));
 
             $core->readImageBlob($binary);
         } catch (\ImagickException $e) {
