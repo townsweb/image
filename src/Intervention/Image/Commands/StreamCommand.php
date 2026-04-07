@@ -2,6 +2,8 @@
 
 namespace Intervention\Image\Commands;
 
+use GuzzleHttp\Psr7\Utils;
+
 class StreamCommand extends AbstractCommand
 {
     /**
@@ -16,7 +18,7 @@ class StreamCommand extends AbstractCommand
         $format = $this->argument(0)->value();
         $quality = $this->argument(1)->between(0, 100)->value();
 
-        $this->setOutput(\GuzzleHttp\Psr7\stream_for(
+        $this->setOutput(Utils::streamFor(
             $image->encode($format, $quality)->getEncoded()
         ));
 
